@@ -324,6 +324,7 @@ const CreateListing = () => {
               multiple
             />
             <button
+              disabled={uploading}
               onClick={handleImageSubmit}
               type="button"
               className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
