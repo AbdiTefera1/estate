@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
-  const { loading, error } = useSelector((state) => state.user)
+  const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,7 +30,8 @@ const SignIn = () => {
     e.preventDefault();
     try {
       // setLoading(true);
-      dispatch(signInStart())
+      dispatch(signInFailure(""));
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -35,17 +43,19 @@ const SignIn = () => {
       if (data.success === false) {
         // setError(data.message);
         // setLoading(false);
-        dispatch(signInFailure(data.message))
+        toast.error(data.message)
+        dispatch(signInFailure(data.message));
         return;
       }
       // setLoading(false);
       // setError(null);
-      dispatch(signInSuccess(data))
+      dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
       // setError(error.message);
       // setLoading(false);
-      dispatch(signInFailure(error.message))
+      dispatch(signInFailure(error.message));
+      toast.error(error.message)
     }
   };
   return (
@@ -59,20 +69,31 @@ const SignIn = () => {
           id="email"
           onChange={handleOnChange}
         />
-        <input
-          type="password"
-          placeholder="password"
-          className="border p-3 rounded-lg focus:outline-blue-500"
-          id="password"
-          onChange={handleOnChange}
-        />
+
+        <div className="flex flex-row focus:outline-blue-500 bg-white rounded-lg p-3">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="password"
+            className="border-none p-1 outline-none focus:outline-none  w-full"
+            id="password"
+            onChange={handleOnChange}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="border-none"
+          >
+            {showPassword ? <FaEye style={{fontSize: 30, padding: 3}} /> : <FaEyeSlash style={{fontSize: 30, padding: 3}} />}
+          </button>
+        </div>
+
         <button
           disabled={loading}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Sign In"}
         </button>
-        <OAuth/>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>dont have an account?</p>
