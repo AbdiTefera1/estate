@@ -278,7 +278,9 @@ const Profile = () => {
                 >
                   delete
                 </button>
+                <Link to={`/updatelisting/${listing._id}`}>
                 <button className="text-green-700 uppercase">Edit</button>
+                </Link>
               </div>
             </div>
           ))}
