@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Contact = ({ listing }) => {
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState("");
-  const onChange = (e) => {};
+  const onChange = (e) => {
+    setMessage(e.target.value);
+  };
   useEffect(() => {
     const fetchLandlord = async () => {
       try {
