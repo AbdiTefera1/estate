@@ -310,7 +310,7 @@ const UpdateListing = () => {
                   type="number"
                   id="discountPrice"
                   className="p-3 border border-gray-300 rounded-lg"
-                  min="50"
+                  min="1"
                   max="10000000"
                   required
                   onChange={handleChange}
