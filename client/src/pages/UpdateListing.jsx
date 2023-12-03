@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { app } from "./../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import {
   getDownloadURL,
   getStorage,
@@ -74,7 +74,7 @@ const UpdateListing = () => {
       setImageUploadError(
         "You can only upload min 1 and max 6 image per listing!"
       );
-      toast.error("You can only upload min 1 and max 6 image per listing!");
+      // toast.error("You can only upload min 1 and max 6 image per listing!");
       setUploading(false);
     }
   };
@@ -91,7 +91,7 @@ const UpdateListing = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log(`Upload is ${progress}% done`);
-          toast.success(`Upload is ${progress}% done`);
+          // toast.success(`Upload is ${progress}% done`);
         },
         (error) => {
           reject(error);

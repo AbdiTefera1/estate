@@ -2,8 +2,8 @@ import { useState } from "react";
 import { app } from "./../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import {
   getDownloadURL,
   getStorage,
@@ -59,7 +59,7 @@ const CreateListing = () => {
       setImageUploadError(
         "You can only upload min 1 and max 6 image per listing!"
       );
-      toast.error("You can only upload min 1 and max 6 image per listing!");
+      // toast.error("You can only upload min 1 and max 6 image per listing!");
       setUploading(false);
     }
   };
@@ -76,7 +76,7 @@ const CreateListing = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log(`Upload is ${progress}% done`);
-          toast.success(`Upload is ${progress}% done`);
+          // toast.success(`Upload is ${progress}% done`);
         },
         (error) => {
           reject(error);
@@ -295,7 +295,7 @@ const CreateListing = () => {
                   type="number"
                   id="discountPrice"
                   className="p-3 border border-gray-300 rounded-lg"
-                  min="50"
+                  min="0"
                   max="10000000"
                   required
                   onChange={handleChange}

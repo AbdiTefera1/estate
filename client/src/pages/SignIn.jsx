@@ -8,7 +8,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -43,7 +43,7 @@ const SignIn = () => {
       if (data.success === false) {
         // setError(data.message);
         // setLoading(false);
-        toast.error(data.message)
+        // toast.error(data.message)
         dispatch(signInFailure(data.message));
         return;
       }
@@ -55,7 +55,7 @@ const SignIn = () => {
       // setError(error.message);
       // setLoading(false);
       dispatch(signInFailure(error.message));
-      toast.error(error.message)
+      // toast.error(error.message)
     }
   };
   return (
