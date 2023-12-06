@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ListingItem from "../components/ListingItem";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
+import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 
 const Home = () => {
@@ -68,7 +68,7 @@ const Home = () => {
         {offerListings &&
           offerListings.length > 0 &&
           offerListings.map((listing) => (
-            <SwiperSlide>
+            <SwiperSlide key={listing.imageUrls[0]}>
               <div
                 style={{
                   background: `url(${listing.imageUrls[0]}) center no-repeat`,
